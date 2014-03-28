@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Packages Demo</string>
+    
+    <string name="trigger_scan_package">scan packages</string>
+
+</resources>

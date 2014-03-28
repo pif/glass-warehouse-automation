@@ -1,0 +1,15 @@
+<resources>
+
+    <dimen name="glass_ui_padding">40px</dimen>
+    <dimen name="glass_text_big">48px</dimen>
+    <dimen name="glass_text_normal">36px</dimen>
+    <dimen name="glass_text_small">26px</dimen>
+    <dimen name="glass_text_separator">16px</dimen>
+    <dimen name="glass_card_left_image_width">240px</dimen>
+    <dimen name="glass_card_left_content_padding_left">30px</dimen>
+    <dimen name="glass_card_small_text_bar">70px</dimen>
+    <dimen name="glass_team_bar_width">12px</dimen>
+    <dimen name="glass_card_listview_bar">60px</dimen>
+    <dimen name="glass_card_leaderboard_points">120px</dimen>
+
+</resources>

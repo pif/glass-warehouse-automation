@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:alpha="0.4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/glass_ui_padding"
+        android:paddingTop="@dimen/glass_ui_padding" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140px" >
+
+            <TextView
+                android:layout_width="@dimen/glass_card_left_image_width"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/glass_ui_padding"
+                android:text="Item:"
+                android:textSize="@dimen/glass_text_big" />
+
+            <TextView
+                android:id="@+id/output_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="018000871025"
+                android:textSize="@dimen/glass_text_big" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140px" >
+
+            <TextView
+                android:layout_width="@dimen/glass_card_left_image_width"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/glass_ui_padding"
+                android:text="Expires:"
+                android:textSize="@dimen/glass_text_big" />
+
+            <TextView
+                android:id="@+id/output_expiry"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="2014-05-25"
+                android:textSize="@dimen/glass_text_big" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

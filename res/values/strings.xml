@@ -3,5 +3,9 @@
     <string name="app_name">Packages Demo</string>
     
     <string name="trigger_scan_package">scan packages</string>
+    
+    <string name="label_item">Item:</string>
+    
+    <string name="label_expires">Expires:</string>
 
 </resources>

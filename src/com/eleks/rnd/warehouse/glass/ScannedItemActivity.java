@@ -4,17 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.glass.widget.MessageDialog;
 
 public class ScannedItemActivity extends Activity {
-    private static final String TAG = "ItemA";
+    
+    private static final String TAG = "ScannedItemActivity";
 
     private static final long BEFORE_DIALOG_TIME = 3000;
-
-    protected static final long AFTER_DIALOG_TIME = 3000;
+    private static final long AFTER_DIALOG_TIME = 3000;
 
     private Handler mHandler;
     private ImageView mImage;
@@ -22,6 +24,10 @@ public class ScannedItemActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
         setContentView(R.layout.activity_item);
 
         final Item item = (Item) getIntent().getSerializableExtra(Flow.EXTRA_ITEM);
@@ -46,9 +52,14 @@ public class ScannedItemActivity extends Activity {
     private void showItemAddingDialog(Item item) {
         String secondary = item.getId() + " :: " + item.getExpiryString();
         MessageDialog localDialog = new MessageDialog.Builder(ScannedItemActivity.this)
-                .setTemporaryIcon(R.drawable.ic_sync_50).setTemporaryMessage("adding item")
-                .setTemporarySecondaryMessage(secondary).setIcon(R.drawable.ic_done_50).setMessage("success")
-                .setSecondaryMessage(secondary).setDismissable(true).setAutoHide(true)
+                .setTemporaryIcon(R.drawable.ic_sync_50)
+                .setTemporaryMessage("adding item")
+                .setTemporarySecondaryMessage(secondary)
+                .setIcon(R.drawable.ic_done_50)
+                .setMessage("success")
+                .setSecondaryMessage(secondary)
+                .setDismissable(true)
+                .setAutoHide(true)
                 .setListener(new MessageDialog.SimpleListener() {
                     public boolean onConfirmed() {
                         Log.d(TAG, "onConfirm");
@@ -73,6 +84,10 @@ public class ScannedItemActivity extends Activity {
         localDialog.show();
     }
 
+    /**
+     * for demo purposes
+     * @return
+     */
     private int getRandomFood() {
         int random = ((int) (Math.random() * 1000)) % 4;
         switch (random) {

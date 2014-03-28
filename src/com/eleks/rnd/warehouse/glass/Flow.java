@@ -21,15 +21,10 @@ public class Flow {
     private static final String TAG = "Flow";
 
     public static final String EXTRA_ITEM = "parsed_item";
-
     public static final int VOICE_DATE_REQUEST = 42;
 
-    private final Context context;
-    private Item mCurrentItem = new Item();
-
-    private Flow(Context ctx) {
-        this.context = ctx;
-    }
+    private final Context mContext;
+    private final Item mCurrentItem;
 
     private static Map<Context, Flow> mContextFlow = new WeakHashMap<Context, Flow>();
 
@@ -41,6 +36,11 @@ public class Flow {
             mContextFlow.put(ctx, f);
             return f;
         }
+    }
+
+    private Flow(Context ctx) {
+        mContext = ctx;
+        mCurrentItem = new Item();
     }
 
     public void scanned(Symbol sym) {
@@ -61,16 +61,16 @@ public class Flow {
         }
     }
 
-    public void scannedFullItem() {
-        Intent i = new Intent(context, ScannedItemActivity.class);
+    private void scannedFullItem() {
+        Intent i = new Intent(mContext, ScannedItemActivity.class);
         i.putExtra(EXTRA_ITEM, mCurrentItem);
-        context.startActivity(i);
+        mContext.startActivity(i);
     }
 
-    public void getDateViaVoice() {
+    private void getDateViaVoice() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say expiry date: month and day");
-        ((Activity) context).startActivityForResult(intent, Flow.VOICE_DATE_REQUEST);
+        ((Activity) mContext).startActivityForResult(intent, Flow.VOICE_DATE_REQUEST);
     }
 
     public void completeWithDate(Intent intent) {
@@ -91,7 +91,7 @@ public class Flow {
      *            free form text
      * @return null or parsed date
      */
-    public static Date parse(String text) {
+    private static Date parse(String text) {
         Log.d(TAG, "============= PARSING: " + text);
         Parser parser = new Parser();
         List<DateGroup> groups = parser.parse(text);
@@ -105,7 +105,7 @@ public class Flow {
         return null;
     }
 
-    public static Date get5thDayFromNow() {
+    private static Date get5thDayFromNow() {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_MONTH, 5);
         return c.getTime();

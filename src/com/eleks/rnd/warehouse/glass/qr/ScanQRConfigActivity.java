@@ -140,8 +140,8 @@ public class ScanQRConfigActivity extends Activity {
                 Image barcode = new Image(size.width, size.height, "NV21");
                 barcode.setData(data);
                 barcode = barcode.convert("Y800");
+                
                 int result = mScanner.scanImage(barcode);
-
                 if (result != 0) {
                     mPreviewing = false;
                     releaseCamera();
